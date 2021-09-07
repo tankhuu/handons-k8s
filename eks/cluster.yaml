@@ -1,0 +1,22 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: tkt
+  region: us-east-1
+
+availabilityZones: ['us-east-1a', 'us-east-1b', 'us-east-1c', 'us-east-1d']
+
+managedNodeGroups:
+- name: tk-od # on-demand instances node group
+  instanceType: t3.micro
+  desiredCapacity: 1
+  maxSize: 2
+  ssh: # use existing EC2 key
+    publicKeyName: tankhuulab
+- name: tk-si # spot instances node group. # `instanceTypes` defaults to [`m5.large`]
+  desiredCapacity: 1
+  maxSize: 2
+  spot: true
+  ssh: # use existing EC2 key
+    publicKeyName: tankhuulab
