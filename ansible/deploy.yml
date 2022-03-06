@@ -1,0 +1,8 @@
+---
+# deploy k8s
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  user: root
+  roles:
+  - pilot
