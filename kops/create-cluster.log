@@ -1,0 +1,1013 @@
+❯ kops create cluster --zones=$az ${NAME}                                                                                                                                                                                                                  ─╯
+I0311 16:43:51.380632   18580 new_cluster.go:248] Inferred "aws" cloud provider from zone "ap-southeast-2a"
+I0311 16:43:51.380770   18580 new_cluster.go:1102]  Cloud Provider ID = aws
+I0311 16:43:52.146875   18580 subnets.go:182] Assigned CIDR 172.20.32.0/19 to subnet ap-southeast-2a
+I0311 16:43:56.208487   18580 create_cluster.go:843] Using SSH public key: /Users/tankhuu/.ssh/id_rsa.pub
+Previewing changes that will be made:
+
+
+*********************************************************************************
+
+A new kubernetes version is available: 1.22.7
+Upgrading is recommended (try kops upgrade cluster)
+
+More information: https://github.com/kubernetes/kops/blob/master/permalinks/upgrade_k8s.md#1.22.7
+
+*********************************************************************************
+
+I0311 16:44:08.373878   18580 executor.go:111] Tasks: 0 done / 90 total; 45 can run
+W0311 16:44:09.480121   18580 vfs_castore.go:379] CA private key was not found
+I0311 16:44:09.755626   18580 executor.go:111] Tasks: 45 done / 90 total; 19 can run
+I0311 16:44:11.190524   18580 executor.go:111] Tasks: 64 done / 90 total; 24 can run
+I0311 16:44:11.899154   18580 executor.go:111] Tasks: 88 done / 90 total; 2 can run
+I0311 16:44:12.453735   18580 executor.go:111] Tasks: 90 done / 90 total; 0 can run
+Will create resources:
+  AutoscalingGroup/master-ap-southeast-2a.masters.lu3k.link
+  	Granularity         	1Minute
+  	InstanceProtection  	false
+  	LaunchTemplate      	name:master-ap-southeast-2a.masters.lu3k.link
+  	LoadBalancers       	[]
+  	MaxSize             	1
+  	Metrics             	[GroupDesiredCapacity, GroupInServiceInstances, GroupMaxSize, GroupMinSize, GroupPendingInstances, GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances]
+  	MinSize             	1
+  	Subnets             	[name:ap-southeast-2a.lu3k.link]
+  	SuspendProcesses    	[]
+  	Tags                	{k8s.io/cluster-autoscaler/node-template/label/kops.k8s.io/kops-controller-pki: , k8s.io/role/master: 1, kops.k8s.io/instancegroup: master-ap-southeast-2a, Name: master-ap-southeast-2a.masters.lu3k.link, k8s.io/cluster-autoscaler/node-template/label/kops.k8s.io/instancegroup: master-ap-southeast-2a, k8s.io/cluster-autoscaler/node-template/label/kubernetes.io/role: master, k8s.io/cluster-autoscaler/node-template/label/node.kubernetes.io/exclude-from-external-load-balancers: , k8s.io/cluster-autoscaler/node-template/label/node-role.kubernetes.io/master: , k8s.io/cluster-autoscaler/node-template/label/node-role.kubernetes.io/control-plane: , KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+  	TargetGroups        	[]
+
+  AutoscalingGroup/nodes-ap-southeast-2a.lu3k.link
+  	Granularity         	1Minute
+  	InstanceProtection  	false
+  	LaunchTemplate      	name:nodes-ap-southeast-2a.lu3k.link
+  	LoadBalancers       	[]
+  	MaxSize             	1
+  	Metrics             	[GroupDesiredCapacity, GroupInServiceInstances, GroupMaxSize, GroupMinSize, GroupPendingInstances, GroupStandbyInstances, GroupTerminatingInstances, GroupTotalInstances]
+  	MinSize             	1
+  	Subnets             	[name:ap-southeast-2a.lu3k.link]
+  	SuspendProcesses    	[]
+  	Tags                	{Name: nodes-ap-southeast-2a.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned, k8s.io/cluster-autoscaler/node-template/label/kops.k8s.io/instancegroup: nodes-ap-southeast-2a, k8s.io/cluster-autoscaler/node-template/label/node-role.kubernetes.io/node: , k8s.io/cluster-autoscaler/node-template/label/kubernetes.io/role: node, k8s.io/role/node: 1, kops.k8s.io/instancegroup: nodes-ap-southeast-2a}
+  	TargetGroups        	[]
+
+  DHCPOptions/lu3k.link
+  	DomainName          	ap-southeast-2.compute.internal
+  	DomainNameServers   	AmazonProvidedDNS
+  	Shared              	false
+  	Tags                	{Name: lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+
+  EBSVolume/a.etcd-events.lu3k.link
+  	AvailabilityZone    	ap-southeast-2a
+  	Encrypted           	true
+  	SizeGB              	20
+  	Tags                	{k8s.io/etcd/events: a/a, k8s.io/role/master: 1, kubernetes.io/cluster/lu3k.link: owned, Name: a.etcd-events.lu3k.link, KubernetesCluster: lu3k.link}
+  	VolumeIops          	3000
+  	VolumeThroughput    	125
+  	VolumeType          	gp3
+
+  EBSVolume/a.etcd-main.lu3k.link
+  	AvailabilityZone    	ap-southeast-2a
+  	Encrypted           	true
+  	SizeGB              	20
+  	Tags                	{Name: a.etcd-main.lu3k.link, KubernetesCluster: lu3k.link, k8s.io/etcd/main: a/a, k8s.io/role/master: 1, kubernetes.io/cluster/lu3k.link: owned}
+  	VolumeIops          	3000
+  	VolumeThroughput    	125
+  	VolumeType          	gp3
+
+  IAMInstanceProfile/masters.lu3k.link
+  	Tags                	{Name: masters.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+  	Shared              	false
+
+  IAMInstanceProfile/nodes.lu3k.link
+  	Tags                	{Name: nodes.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+  	Shared              	false
+
+  IAMInstanceProfileRole/masters.lu3k.link
+  	InstanceProfile     	name:masters.lu3k.link id:masters.lu3k.link
+  	Role                	name:masters.lu3k.link
+
+  IAMInstanceProfileRole/nodes.lu3k.link
+  	InstanceProfile     	name:nodes.lu3k.link id:nodes.lu3k.link
+  	Role                	name:nodes.lu3k.link
+
+  IAMRole/masters.lu3k.link
+  	Tags                	{kubernetes.io/cluster/lu3k.link: owned, Name: masters.lu3k.link, KubernetesCluster: lu3k.link}
+  	ExportWithID        	masters
+
+  IAMRole/nodes.lu3k.link
+  	Tags                	{Name: nodes.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+  	ExportWithID        	nodes
+
+  IAMRolePolicy/master-policyoverride
+  	Role                	name:masters.lu3k.link
+  	Managed             	true
+
+  IAMRolePolicy/masters.lu3k.link
+  	Role                	name:masters.lu3k.link
+  	Managed             	false
+
+  IAMRolePolicy/node-policyoverride
+  	Role                	name:nodes.lu3k.link
+  	Managed             	true
+
+  IAMRolePolicy/nodes.lu3k.link
+  	Role                	name:nodes.lu3k.link
+  	Managed             	false
+
+  InternetGateway/lu3k.link
+  	VPC                 	name:lu3k.link
+  	Shared              	false
+  	Tags                	{Name: lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+
+  Keypair/apiserver-aggregator-ca
+  	Subject             	cn=apiserver-aggregator-ca
+  	Issuer
+  	Type                	ca
+  	LegacyFormat        	false
+
+  Keypair/etcd-clients-ca
+  	Subject             	cn=etcd-clients-ca
+  	Issuer
+  	Type                	ca
+  	LegacyFormat        	false
+
+  Keypair/etcd-manager-ca-events
+  	Subject             	cn=etcd-manager-ca-events
+  	Issuer
+  	Type                	ca
+  	LegacyFormat        	false
+
+  Keypair/etcd-manager-ca-main
+  	Subject             	cn=etcd-manager-ca-main
+  	Issuer
+  	Type                	ca
+  	LegacyFormat        	false
+
+  Keypair/etcd-peers-ca-events
+  	Subject             	cn=etcd-peers-ca-events
+  	Issuer
+  	Type                	ca
+  	LegacyFormat        	false
+
+  Keypair/etcd-peers-ca-main
+  	Subject             	cn=etcd-peers-ca-main
+  	Issuer
+  	Type                	ca
+  	LegacyFormat        	false
+
+  Keypair/kubernetes-ca
+  	Subject             	cn=kubernetes-ca
+  	Issuer
+  	Type                	ca
+  	LegacyFormat        	false
+
+  Keypair/service-account
+  	Subject             	cn=service-account
+  	Issuer
+  	Type                	ca
+  	LegacyFormat        	false
+
+  LaunchTemplate/master-ap-southeast-2a.masters.lu3k.link
+  	AssociatePublicIP   	true
+  	CPUCredits
+  	HTTPPutResponseHopLimit	3
+  	HTTPTokens          	required
+  	HTTPProtocolIPv6    	disabled
+  	IAMInstanceProfile  	name:masters.lu3k.link id:masters.lu3k.link
+  	ImageID             	099720109477/ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20220131
+  	InstanceMonitoring  	false
+  	InstanceType        	t3.medium
+  	IPv6AddressCount    	0
+  	RootVolumeIops      	3000
+  	RootVolumeSize      	64
+  	RootVolumeThroughput	125
+  	RootVolumeType      	gp3
+  	RootVolumeEncryption	true
+  	RootVolumeKmsKey
+  	SSHKey              	name:kubernetes.lu3k.link-61:74:d3:c4:e8:57:ea:d3:cd:88:32:39:1f:12:3f:6e id:kubernetes.lu3k.link-61:74:d3:c4:e8:57:ea:d3:cd:88:32:39:1f:12:3f:6e
+  	SecurityGroups      	[name:masters.lu3k.link]
+  	SpotPrice
+  	Tags                	{kubernetes.io/cluster/lu3k.link: owned, k8s.io/cluster-autoscaler/node-template/label/kops.k8s.io/instancegroup: master-ap-southeast-2a, k8s.io/cluster-autoscaler/node-template/label/node.kubernetes.io/exclude-from-external-load-balancers: , k8s.io/role/master: 1, KubernetesCluster: lu3k.link, k8s.io/cluster-autoscaler/node-template/label/kubernetes.io/role: master, k8s.io/cluster-autoscaler/node-template/label/node-role.kubernetes.io/master: , k8s.io/cluster-autoscaler/node-template/label/node-role.kubernetes.io/control-plane: , k8s.io/cluster-autoscaler/node-template/label/kops.k8s.io/kops-controller-pki: , kops.k8s.io/instancegroup: master-ap-southeast-2a, Name: master-ap-southeast-2a.masters.lu3k.link}
+
+  LaunchTemplate/nodes-ap-southeast-2a.lu3k.link
+  	AssociatePublicIP   	true
+  	CPUCredits
+  	HTTPPutResponseHopLimit	1
+  	HTTPTokens          	required
+  	HTTPProtocolIPv6    	disabled
+  	IAMInstanceProfile  	name:nodes.lu3k.link id:nodes.lu3k.link
+  	ImageID             	099720109477/ubuntu/images/hvm-ssd/ubuntu-focal-20.04-amd64-server-20220131
+  	InstanceMonitoring  	false
+  	InstanceType        	t3.medium
+  	IPv6AddressCount    	0
+  	RootVolumeIops      	3000
+  	RootVolumeSize      	128
+  	RootVolumeThroughput	125
+  	RootVolumeType      	gp3
+  	RootVolumeEncryption	true
+  	RootVolumeKmsKey
+  	SSHKey              	name:kubernetes.lu3k.link-61:74:d3:c4:e8:57:ea:d3:cd:88:32:39:1f:12:3f:6e id:kubernetes.lu3k.link-61:74:d3:c4:e8:57:ea:d3:cd:88:32:39:1f:12:3f:6e
+  	SecurityGroups      	[name:nodes.lu3k.link]
+  	SpotPrice
+  	Tags                	{Name: nodes-ap-southeast-2a.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned, k8s.io/cluster-autoscaler/node-template/label/node-role.kubernetes.io/node: , k8s.io/cluster-autoscaler/node-template/label/kubernetes.io/role: node, k8s.io/cluster-autoscaler/node-template/label/kops.k8s.io/instancegroup: nodes-ap-southeast-2a, k8s.io/role/node: 1, kops.k8s.io/instancegroup: nodes-ap-southeast-2a}
+
+  ManagedFile/cluster-completed.spec
+  	Base                	s3://lu3k-kops-state/lu3k.link
+  	Location            	cluster-completed.spec
+
+  ManagedFile/etcd-cluster-spec-events
+  	Base                	s3://lu3k-kops-state/lu3k.link/backups/etcd/events
+  	Location            	/control/etcd-cluster-spec
+
+  ManagedFile/etcd-cluster-spec-main
+  	Base                	s3://lu3k-kops-state/lu3k.link/backups/etcd/main
+  	Location            	/control/etcd-cluster-spec
+
+  ManagedFile/kops-version.txt
+  	Base                	s3://lu3k-kops-state/lu3k.link
+  	Location            	kops-version.txt
+
+  ManagedFile/lu3k.link-addons-aws-ebs-csi-driver.addons.k8s.io-k8s-1.17
+  	Location            	addons/aws-ebs-csi-driver.addons.k8s.io/k8s-1.17.yaml
+
+  ManagedFile/lu3k.link-addons-bootstrap
+  	Location            	addons/bootstrap-channel.yaml
+
+  ManagedFile/lu3k.link-addons-core.addons.k8s.io
+  	Location            	addons/core.addons.k8s.io/v1.4.0.yaml
+
+  ManagedFile/lu3k.link-addons-coredns.addons.k8s.io-k8s-1.12
+  	Location            	addons/coredns.addons.k8s.io/k8s-1.12.yaml
+
+  ManagedFile/lu3k.link-addons-dns-controller.addons.k8s.io-k8s-1.12
+  	Location            	addons/dns-controller.addons.k8s.io/k8s-1.12.yaml
+
+  ManagedFile/lu3k.link-addons-kops-controller.addons.k8s.io-k8s-1.16
+  	Location            	addons/kops-controller.addons.k8s.io/k8s-1.16.yaml
+
+  ManagedFile/lu3k.link-addons-kubelet-api.rbac.addons.k8s.io-k8s-1.9
+  	Location            	addons/kubelet-api.rbac.addons.k8s.io/k8s-1.9.yaml
+
+  ManagedFile/lu3k.link-addons-limit-range.addons.k8s.io
+  	Location            	addons/limit-range.addons.k8s.io/v1.5.0.yaml
+
+  ManagedFile/lu3k.link-addons-storage-aws.addons.k8s.io-v1.15.0
+  	Location            	addons/storage-aws.addons.k8s.io/v1.15.0.yaml
+
+  ManagedFile/manifests-etcdmanager-events
+  	Location            	manifests/etcd/events.yaml
+
+  ManagedFile/manifests-etcdmanager-main
+  	Location            	manifests/etcd/main.yaml
+
+  ManagedFile/manifests-static-kube-apiserver-healthcheck
+  	Location            	manifests/static/kube-apiserver-healthcheck.yaml
+
+  ManagedFile/nodeupconfig-master-ap-southeast-2a
+  	Location            	igconfig/master/master-ap-southeast-2a/nodeupconfig.yaml
+
+  ManagedFile/nodeupconfig-nodes-ap-southeast-2a
+  	Location            	igconfig/node/nodes-ap-southeast-2a/nodeupconfig.yaml
+
+  Route/0.0.0.0/0
+  	RouteTable          	name:lu3k.link
+  	CIDR                	0.0.0.0/0
+  	InternetGateway     	name:lu3k.link
+
+  Route/::/0
+  	RouteTable          	name:lu3k.link
+  	IPv6CIDR            	::/0
+  	InternetGateway     	name:lu3k.link
+
+  RouteTable/lu3k.link
+  	VPC                 	name:lu3k.link
+  	Shared              	false
+  	Tags                	{Name: lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned, kubernetes.io/kops/role: public}
+
+  RouteTableAssociation/ap-southeast-2a.lu3k.link
+  	RouteTable          	name:lu3k.link
+  	Subnet              	name:ap-southeast-2a.lu3k.link
+
+  SSHKey/kubernetes.lu3k.link-61:74:d3:c4:e8:57:ea:d3:cd:88:32:39:1f:12:3f:6e
+  	Shared              	false
+  	KeyFingerprint      	ee:4a:9f:d8:40:42:19:05:ca:c5:7d:94:be:51:94:0f
+  	Tags                	{KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned, Name: lu3k.link}
+
+  Secret/admin
+
+  Secret/kube
+
+  Secret/kube-proxy
+
+  Secret/kubelet
+
+  Secret/system:controller_manager
+
+  Secret/system:dns
+
+  Secret/system:logging
+
+  Secret/system:monitoring
+
+  Secret/system:scheduler
+
+  SecurityGroup/masters.lu3k.link
+  	Description         	Security group for masters
+  	VPC                 	name:lu3k.link
+  	RemoveExtraRules    	[port=22, port=443, port=2380, port=2381, port=4001, port=4002, port=4789, port=179, port=8443]
+  	Tags                	{Name: masters.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+
+  SecurityGroup/nodes.lu3k.link
+  	Description         	Security group for nodes
+  	VPC                 	name:lu3k.link
+  	RemoveExtraRules    	[port=22]
+  	Tags                	{Name: nodes.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+
+  SecurityGroupRule/from-0.0.0.0/0-ingress-tcp-22to22-masters.lu3k.link
+  	SecurityGroup       	name:masters.lu3k.link
+  	CIDR                	0.0.0.0/0
+  	Protocol            	tcp
+  	FromPort            	22
+  	ToPort              	22
+  	Tags                	{KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned, Name: from-0.0.0.0/0-ingress-tcp-22to22-masters.lu3k.link}
+
+  SecurityGroupRule/from-0.0.0.0/0-ingress-tcp-22to22-nodes.lu3k.link
+  	SecurityGroup       	name:nodes.lu3k.link
+  	CIDR                	0.0.0.0/0
+  	Protocol            	tcp
+  	FromPort            	22
+  	ToPort              	22
+  	Tags                	{Name: from-0.0.0.0/0-ingress-tcp-22to22-nodes.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+
+  SecurityGroupRule/from-0.0.0.0/0-ingress-tcp-443to443-masters.lu3k.link
+  	SecurityGroup       	name:masters.lu3k.link
+  	CIDR                	0.0.0.0/0
+  	Protocol            	tcp
+  	FromPort            	443
+  	ToPort              	443
+  	Tags                	{Name: from-0.0.0.0/0-ingress-tcp-443to443-masters.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+
+  SecurityGroupRule/from-::/0-ingress-tcp-22to22-masters.lu3k.link
+  	SecurityGroup       	name:masters.lu3k.link
+  	IPv6CIDR            	::/0
+  	Protocol            	tcp
+  	FromPort            	22
+  	ToPort              	22
+  	Tags                	{kubernetes.io/cluster/lu3k.link: owned, Name: from-::/0-ingress-tcp-22to22-masters.lu3k.link, KubernetesCluster: lu3k.link}
+
+  SecurityGroupRule/from-::/0-ingress-tcp-22to22-nodes.lu3k.link
+  	SecurityGroup       	name:nodes.lu3k.link
+  	IPv6CIDR            	::/0
+  	Protocol            	tcp
+  	FromPort            	22
+  	ToPort              	22
+  	Tags                	{Name: from-::/0-ingress-tcp-22to22-nodes.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+
+  SecurityGroupRule/from-::/0-ingress-tcp-443to443-masters.lu3k.link
+  	SecurityGroup       	name:masters.lu3k.link
+  	IPv6CIDR            	::/0
+  	Protocol            	tcp
+  	FromPort            	443
+  	ToPort              	443
+  	Tags                	{kubernetes.io/cluster/lu3k.link: owned, Name: from-::/0-ingress-tcp-443to443-masters.lu3k.link, KubernetesCluster: lu3k.link}
+
+  SecurityGroupRule/from-masters.lu3k.link-egress-all-0to0-0.0.0.0/0
+  	SecurityGroup       	name:masters.lu3k.link
+  	CIDR                	0.0.0.0/0
+  	Egress              	true
+  	Tags                	{KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned, Name: from-masters.lu3k.link-egress-all-0to0-0.0.0.0/0}
+
+  SecurityGroupRule/from-masters.lu3k.link-egress-all-0to0-::/0
+  	SecurityGroup       	name:masters.lu3k.link
+  	IPv6CIDR            	::/0
+  	Egress              	true
+  	Tags                	{Name: from-masters.lu3k.link-egress-all-0to0-::/0, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+
+  SecurityGroupRule/from-masters.lu3k.link-ingress-all-0to0-masters.lu3k.link
+  	SecurityGroup       	name:masters.lu3k.link
+  	SourceGroup         	name:masters.lu3k.link
+  	Tags                	{KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned, Name: from-masters.lu3k.link-ingress-all-0to0-masters.lu3k.link}
+
+  SecurityGroupRule/from-masters.lu3k.link-ingress-all-0to0-nodes.lu3k.link
+  	SecurityGroup       	name:nodes.lu3k.link
+  	SourceGroup         	name:masters.lu3k.link
+  	Tags                	{Name: from-masters.lu3k.link-ingress-all-0to0-nodes.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+
+  SecurityGroupRule/from-nodes.lu3k.link-egress-all-0to0-0.0.0.0/0
+  	SecurityGroup       	name:nodes.lu3k.link
+  	CIDR                	0.0.0.0/0
+  	Egress              	true
+  	Tags                	{Name: from-nodes.lu3k.link-egress-all-0to0-0.0.0.0/0, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+
+  SecurityGroupRule/from-nodes.lu3k.link-egress-all-0to0-::/0
+  	SecurityGroup       	name:nodes.lu3k.link
+  	IPv6CIDR            	::/0
+  	Egress              	true
+  	Tags                	{KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned, Name: from-nodes.lu3k.link-egress-all-0to0-::/0}
+
+  SecurityGroupRule/from-nodes.lu3k.link-ingress-all-0to0-nodes.lu3k.link
+  	SecurityGroup       	name:nodes.lu3k.link
+  	SourceGroup         	name:nodes.lu3k.link
+  	Tags                	{Name: from-nodes.lu3k.link-ingress-all-0to0-nodes.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+
+  SecurityGroupRule/from-nodes.lu3k.link-ingress-tcp-1to2379-masters.lu3k.link
+  	SecurityGroup       	name:masters.lu3k.link
+  	Protocol            	tcp
+  	FromPort            	1
+  	ToPort              	2379
+  	SourceGroup         	name:nodes.lu3k.link
+  	Tags                	{kubernetes.io/cluster/lu3k.link: owned, Name: from-nodes.lu3k.link-ingress-tcp-1to2379-masters.lu3k.link, KubernetesCluster: lu3k.link}
+
+  SecurityGroupRule/from-nodes.lu3k.link-ingress-tcp-2382to4000-masters.lu3k.link
+  	SecurityGroup       	name:masters.lu3k.link
+  	Protocol            	tcp
+  	FromPort            	2382
+  	ToPort              	4000
+  	SourceGroup         	name:nodes.lu3k.link
+  	Tags                	{kubernetes.io/cluster/lu3k.link: owned, Name: from-nodes.lu3k.link-ingress-tcp-2382to4000-masters.lu3k.link, KubernetesCluster: lu3k.link}
+
+  SecurityGroupRule/from-nodes.lu3k.link-ingress-tcp-4003to65535-masters.lu3k.link
+  	SecurityGroup       	name:masters.lu3k.link
+  	Protocol            	tcp
+  	FromPort            	4003
+  	ToPort              	65535
+  	SourceGroup         	name:nodes.lu3k.link
+  	Tags                	{Name: from-nodes.lu3k.link-ingress-tcp-4003to65535-masters.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned}
+
+  SecurityGroupRule/from-nodes.lu3k.link-ingress-udp-1to65535-masters.lu3k.link
+  	SecurityGroup       	name:masters.lu3k.link
+  	Protocol            	udp
+  	FromPort            	1
+  	ToPort              	65535
+  	SourceGroup         	name:nodes.lu3k.link
+  	Tags                	{KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned, Name: from-nodes.lu3k.link-ingress-udp-1to65535-masters.lu3k.link}
+
+  Subnet/ap-southeast-2a.lu3k.link
+  	ShortName           	ap-southeast-2a
+  	VPC                 	name:lu3k.link
+  	AvailabilityZone    	ap-southeast-2a
+  	CIDR                	172.20.32.0/19
+  	Shared              	false
+  	Tags                	{Name: ap-southeast-2a.lu3k.link, KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned, SubnetType: Public, kubernetes.io/role/elb: 1, kubernetes.io/role/internal-elb: 1}
+
+  VPC/lu3k.link
+  	CIDR                	172.20.0.0/16
+  	AmazonIPv6          	true
+  	EnableDNSHostnames  	true
+  	EnableDNSSupport    	true
+  	Shared              	false
+  	Tags                	{KubernetesCluster: lu3k.link, kubernetes.io/cluster/lu3k.link: owned, Name: lu3k.link}
+
+  VPCAmazonIPv6CIDRBlock/AmazonIPv6
+  	VPC                 	name:lu3k.link
+  	Shared              	false
+
+  VPCDHCPOptionsAssociation/lu3k.link
+  	VPC                 	name:lu3k.link
+  	DHCPOptions         	name:lu3k.link
+
+  WarmPool/master-ap-southeast-2a.masters.lu3k.link
+  	Enabled             	false
+  	MinSize             	0
+
+  WarmPool/nodes-ap-southeast-2a.lu3k.link
+  	Enabled             	false
+  	MinSize             	0
+
+Must specify --yes to apply changes
+
+Cluster configuration has been created.
+
+Suggestions:
+ * list clusters with: kops get cluster
+ * edit this cluster with: kops edit cluster lu3k.link
+ * edit your node instance group: kops edit ig --name=lu3k.link nodes-ap-southeast-2a
+ * edit your master instance group: kops edit ig --name=lu3k.link master-ap-southeast-2a
+
+Finally configure your cluster with: kops update cluster --name lu3k.link --yes --admin
+
+
+░▒▓    ~ ····························································································································································································· took 28s   anaconda3   at 04:44:12 PM  ▓▒░─╮
+❯
+
+❯ kops update cluster --name $NAME --yes --admin                                                                                                                                                                                                           ─╯
+
+*********************************************************************************
+
+A new kubernetes version is available: 1.22.7
+Upgrading is recommended (try kops upgrade cluster)
+
+More information: https://github.com/kubernetes/kops/blob/master/permalinks/upgrade_k8s.md#1.22.7
+
+*********************************************************************************
+
+I0311 16:47:51.431599   18643 executor.go:111] Tasks: 0 done / 90 total; 45 can run
+W0311 16:47:52.508887   18643 vfs_castore.go:379] CA private key was not found
+I0311 16:47:52.558412   18643 keypair.go:225] Issuing new certificate: "etcd-manager-ca-main"
+I0311 16:47:52.736157   18643 keypair.go:225] Issuing new certificate: "etcd-peers-ca-events"
+I0311 16:47:52.743438   18643 keypair.go:225] Issuing new certificate: "etcd-peers-ca-main"
+I0311 16:47:52.765606   18643 keypair.go:225] Issuing new certificate: "etcd-manager-ca-events"
+I0311 16:47:52.784225   18643 keypair.go:225] Issuing new certificate: "etcd-clients-ca"
+I0311 16:47:52.827406   18643 keypair.go:225] Issuing new certificate: "apiserver-aggregator-ca"
+W0311 16:47:53.127049   18643 vfs_castore.go:379] CA private key was not found
+I0311 16:47:53.379264   18643 keypair.go:225] Issuing new certificate: "kubernetes-ca"
+I0311 16:47:53.508549   18643 keypair.go:225] Issuing new certificate: "service-account"
+I0311 16:47:57.861560   18643 executor.go:111] Tasks: 45 done / 90 total; 19 can run
+I0311 16:47:59.769742   18643 executor.go:111] Tasks: 64 done / 90 total; 24 can run
+I0311 16:48:01.809206   18643 executor.go:111] Tasks: 88 done / 90 total; 2 can run
+I0311 16:48:05.118049   18643 executor.go:111] Tasks: 90 done / 90 total; 0 can run
+I0311 16:48:06.741952   18643 dns.go:238] Pre-creating DNS records
+I0311 16:48:09.065038   18643 update_cluster.go:326] Exporting kubeconfig for cluster
+kOps has set your kubectl context to lu3k.link
+
+Cluster is starting.  It should be ready in a few minutes.
+
+Suggestions:
+ * validate cluster: kops validate cluster --wait 10m
+ * list nodes: kubectl get nodes --show-labels
+ * ssh to the master: ssh -i ~/.ssh/id_rsa ubuntu@api.lu3k.link
+ * the ubuntu user is specific to Ubuntu. If not using Ubuntu please use the appropriate user based on your OS.
+ * read about installing addons at: https://kops.sigs.k8s.io/addons.
+
+
+
+❯ kops validate cluster --wait 10m                                                                                                                                                                                                                         ─╯
+Using cluster from kubectl context: lu3k.link
+
+Validating cluster lu3k.link
+
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:48:41.655550   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:48:51.657498   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:49:01.936807   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:49:11.938152   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:49:22.053168   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:49:32.055130   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:49:42.088759   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:49:52.089852   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:50:02.340180   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:50:12.341871   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:50:22.388705   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:50:32.390877   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:50:42.596379   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:50:52.591487   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:51:02.666623   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:51:12.666606   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:51:22.726444   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:51:32.727594   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:51:42.938298   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:51:52.939789   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:52:03.031257   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:52:13.032899   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:52:23.251801   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:52:33.253412   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:52:43.467112   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:52:53.468647   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:53:03.605568   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME	ROLE	READY
+
+VALIDATION ERRORS
+KIND	NAME		MESSAGE
+dns	apiserver	Validation Failed
+
+The dns-controller Kubernetes deployment has not updated the Kubernetes cluster's API DNS entry to the correct IP address.  The API DNS IP address is the placeholder address that kops creates: 203.0.113.123.  Please wait about 5-10 minutes for a master to start, dns-controller to launch, and DNS to propagate.  The protokube container and dns-controller deployment logs may contain more diagnostic information.  Etcd and the API DNS entries must be updated for a kops Kubernetes cluster to start.
+
+Validation Failed
+W0311 16:53:13.606622   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME							ROLE	READY
+ip-172-20-39-150.ap-southeast-2.compute.internal	master	True
+ip-172-20-59-9.ap-southeast-2.compute.internal		node	True
+
+VALIDATION ERRORS
+KIND	NAME					MESSAGE
+Pod	kube-system/coredns-56dd667f7c-9md5q	system-cluster-critical pod "coredns-56dd667f7c-9md5q" is pending
+Pod	kube-system/coredns-56dd667f7c-f68bm	system-cluster-critical pod "coredns-56dd667f7c-f68bm" is pending
+Pod	kube-system/ebs-csi-node-qh79w		system-node-critical pod "ebs-csi-node-qh79w" is pending
+
+Validation Failed
+W0311 16:53:27.446798   18651 validate_cluster.go:232] (will retry): cluster not yet healthy
+INSTANCE GROUPS
+NAME			ROLE	MACHINETYPE	MIN	MAX	SUBNETS
+master-ap-southeast-2a	Master	t3.medium	1	1	ap-southeast-2a
+nodes-ap-southeast-2a	Node	t3.medium	1	1	ap-southeast-2a
+
+NODE STATUS
+NAME							ROLE	READY
+ip-172-20-39-150.ap-southeast-2.compute.internal	master	True
+ip-172-20-59-9.ap-southeast-2.compute.internal		node	True
+
+Your cluster lu3k.link is ready
