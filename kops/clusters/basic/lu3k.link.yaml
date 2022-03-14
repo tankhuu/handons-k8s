@@ -1,7 +1,7 @@
 apiVersion: kops.k8s.io/v1alpha2
 kind: Cluster
 metadata:
-  creationTimestamp: "2022-03-11T13:23:02Z"
+  creationTimestamp: null
   name: lu3k.link
 spec:
   api:
@@ -34,7 +34,7 @@ spec:
   kubernetesApiAccess:
   - 0.0.0.0/0
   - ::/0
-  kubernetesVersion: 1.23.4
+  kubernetesVersion: v1.23.4
   masterPublicName: api.lu3k.link
   networkCIDR: 172.20.0.0/16
   networking:
@@ -59,7 +59,7 @@ spec:
 apiVersion: kops.k8s.io/v1alpha2
 kind: InstanceGroup
 metadata:
-  creationTimestamp: "2022-03-11T13:23:03Z"
+  creationTimestamp: null
   labels:
     kops.k8s.io/cluster: lu3k.link
   name: master-ap-southeast-2a
@@ -82,7 +82,7 @@ spec:
 apiVersion: kops.k8s.io/v1alpha2
 kind: InstanceGroup
 metadata:
-  creationTimestamp: "2022-03-11T13:23:04Z"
+  creationTimestamp: null
   labels:
     kops.k8s.io/cluster: lu3k.link
   name: nodes-ap-southeast-2a
@@ -92,7 +92,7 @@ spec:
     httpPutResponseHopLimit: 1
     httpTokens: required
   machineType: t3.medium
-  maxSize: 1
+  maxSize: 3
   minSize: 1
   nodeLabels:
     kops.k8s.io/instancegroup: nodes-ap-southeast-2a
