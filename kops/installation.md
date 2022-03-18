@@ -48,6 +48,8 @@ region="ap-southeast-2"
 az=$(aws ec2 describe-availability-zones --region $region --output text --query 'AvailabilityZones[*].ZoneName' | awk -F ' ' '{print $1}')
 
 # kops create -f <cluster spec> will register a cluster using a kOps spec yaml file
+kops create secret --name $NAME sshpublickey admin -i ~/.ssh/id_rsa.pub # allow accessing ec2 instance by ssh
+kops create sshpublickey $NAME -i ~/.ssh/id_rsa.pub
 kops create cluster --zones=$az ${NAME}
 kops update cluster --name $NAME --yes --admin
 
