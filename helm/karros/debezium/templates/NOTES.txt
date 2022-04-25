@@ -1,0 +1,8 @@
+{{ .Chart.Name }} - A Debezium Distributed Connectors
+
+The service is installed with Release Name: {{ .Release.Name }}
+
+For getting more information about Release, try:
+
+  $ helm status {{ .Release.Name }}
+  $ helm get all {{ .Release.Name }}

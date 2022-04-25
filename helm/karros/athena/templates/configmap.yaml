@@ -1,0 +1,63 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: {{.Release.Name}}
+  name: athenaenv
+  annotations:
+    "helm.sh/hook": "pre-install"
+    "helm.sh/hook-weight": "0"
+data:
+  athena.env: >
+    ENV={{.Values.configMap.envType}}
+
+    TENANT={{.Values.configMap.siteName | default .Release.Name}}
+
+    TENANT_ID={{.Values.configMap.tenantId}}
+
+    KARROS_GATEWAY={{.Values.configMap.karrosGateway}}
+
+    KEYCLOAK_DOMAIN={{.Values.configMap.keycloakDomain}}
+
+    DB_HOST={{.Values.configMap.dbHost}}
+
+    DB_NAME={{.Values.configMap.dbName}}
+
+    KAFKA_CONSUMERS={{.Values.configMap.kafkaBootstrapServers}}
+
+    KAFKA_PRODUCERS={{.Values.configMap.kafkaBootstrapServers}}
+
+    DEBEZIUM_CONTROLLER_API={{.Values.configMap.debeziumControllerAPI}}
+
+    DEBEZIUM_CONTROLLER_KEY={{.Values.configMap.debeziumControllerKey}}
+
+    NOS_HOST={{.Values.configMap.nosHost}}
+
+    KEYCLOAK_ID={{.Values.configMap.keycloakId}}
+
+    KEYCLOAK_BACKEND_ID={{.Values.configMap.keycloakBackendId}}
+
+    KEYCLOAK_SECRET={{.Values.configMap.keycloadSecret}}
+
+    CACHE_HOST={{.Values.configMap.cacheHost}}
+
+    QUEUE_HOST={{.Values.configMap.queueHost}}
+
+    QUEUE_USER={{.Values.configMap.queueUser}}
+
+    QUEUE_PASS={{.Values.configMap.queuePass}}
+
+    DB_USER={{.Values.configMap.dbUser}}
+
+    DB_PASS={{.Values.configMap.dbPass}}
+
+    ATHENA_KAFKA_PRODUCERS={{.Values.configMap.athenaKafkaProducers}}
+
+    ATHENA_KAFKA_CONSUMERS={{.Values.configMap.athenaKafkaConsumers}}
+
+    GEOSERVER_HOST={{.Values.configMap.geoServerHost}}
+
+    GEOSERVER_PORT={{.Values.configMap.geoServerPort}}
+
+    NOS_HOST={{.Values.configMap.nosHost}}
+
+    NOS_PORT={{.Values.configMap.nosPort}}

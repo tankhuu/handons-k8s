@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: {{.Release.Namespace}}
+  name: {{.Chart.Name}}
+  labels:
+    svc: {{.Chart.Name}}
+  annotations:
+    service.beta.kubernetes.io/aws-load-balancer-ssl-cert: {{.Values.nlbCert}}
+    service.beta.kubernetes.io/aws-load-balancer-type: "nlb"
+    dns.alpha.kubernetes.io/external:
+      {{printf "ath-be-%s.%s" .Release.Namespace .Values.domain}}
+spec:
+  type: {{.Values.service.type}}
+  ports:
+    - port: {{.Values.service.port}}
+      targetPort: http
+      protocol: TCP
+      name: https
+  selector:
+    app: {{.Chart.Name}}

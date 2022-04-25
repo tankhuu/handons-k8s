@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Release.Namespace }}
+  name: {{ .Chart.Name }}
+  labels:
+    name: {{ .Chart.Name }}
+  annotations:
+    prometheus.io/path: "/actuator/prometheus"
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      app: {{ .Chart.Name }}
+  template:
+    metadata:
+      labels:
+        name: {{ .Chart.Name }}
+        app: {{ .Chart.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default "latest" }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["/bin/sh", "-c"]
+          args:
+            - . /home/athena/athena.env;java -Dspring.datasource.url=jdbc:postgresql://${DB_HOST}:5432/Athena -Dspring.profiles.active=eks -Dspring.rabbitmq.host=${QUEUE_HOST} -Dspring.rabbitmq.username=${QUEUE_USER} -Dspring.rabbitmq.password=${QUEUE_PASS} -Dspring.data.mongodb.host=${CACHE_HOST} -Dathena.env.name=stage -Dathena.tenant.id=${TENANT_ID} -jar -XX:+UseG1GC -Xms256m -Xmx1536m /home/athena/app.jar
+          ports:
+            - name: http
+              containerPort: {{.Values.service.port}}
+              protocol: TCP
+          volumeMounts:
+          - mountPath: /home/athena/athena.env
+            name: athenaenv
+            subPath: athena.env
+          resources:
+            requests:
+              cpu: 200m
+              memory: "1024Mi"
+            limits:
+              cpu: 500m
+              memory: "2048Mi"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: {{.Values.service.port}}
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: {{.Values.service.port}}
+      volumes:
+        - name: athenaenv
+          configMap:
+            defaultMode: 420
+            name: athenaenv
+      restartPolicy: Always
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}

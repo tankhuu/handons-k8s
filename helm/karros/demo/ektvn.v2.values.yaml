@@ -1,0 +1,8 @@
+---
+aggregateservice:
+  image:
+    tag: "556d30fbb516fe070723fc3669436b046372a123"
+tags:
+  # core: true
+  rideRegistration: true
+  # mapOverlay: false

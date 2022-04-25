@@ -1,0 +1,134 @@
+apiVersion: v2
+name: athena
+description: A Helm chart for Athena Backend Services in Kubernetes
+
+# A chart can be either an 'application' or a 'library' chart.
+#
+# Application charts are a collection of templates that can be packaged into versioned archives
+# to be deployed.
+#
+# Library charts provide useful utilities or functions for the chart developer. They're included as
+# a dependency of application charts to inject those utilities and functions into the rendering
+# pipeline. Library charts do not define any templates and therefore cannot be deployed.
+type: application
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 1.0.1
+
+# This is the version number of the application being deployed. This version number should be
+# incremented each time you make changes to the application. Versions are not expected to
+# follow Semantic Versioning. They should reflect the version the application is using.
+# It is recommended to use it with quotes.
+appVersion: "2.0.0"
+
+maintainers:
+  - name: TanKhuu
+    email: tan.khuu@karrostech.com
+
+dependencies:
+  # - name: mongodb
+  #   repository: "@bitnami"
+  #   version: "10.16.4"
+  #   tags:
+  #     - core
+  #     - cache
+  # - name: rabbitmq
+  #   repository: "@bitnami"
+  #   version: "8.15.2"
+  #   tags:
+  #     - core
+  #     - queue
+  - name: gateway
+    version: "1.0.2"
+    repository: "@stable-athena"
+    tags:
+      - core
+      - gateway
+  - name: tnxhubservice
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - core
+      - tnxhubservice
+  - name: routingservice
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - core
+      - routingservice
+  - name: geocodeservice
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - core
+      - geocodeservice
+  - name: importingservice
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - core
+      - importingservice
+  - name: plannedrolloverservice
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - core
+      - plannedrolloverservice
+  - name: reportservice
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - core
+      - reportservice
+  - name: geoserverservice
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - core
+      - geoserverservice
+  - name: overlayservice
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - mapOverlay
+      - overlayservice
+      - reportservice
+
+  - name: aggregateservice
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - rideRegistration
+      - aggregateservice
+  - name: rresservice
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - rresservice
+  - name: routingmigration
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - routingmigration
+  - name: routingmigration
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - routingmigration
+  - name: ivinservice
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - ivinservice
+  - name: geocalculationservice
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - geocalculationservice
+  - name: edtaservice
+    version: "1.0.1"
+    repository: "@stable-athena"
+    tags:
+      - edtaservice

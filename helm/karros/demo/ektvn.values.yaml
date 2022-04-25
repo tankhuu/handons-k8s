@@ -1,0 +1,37 @@
+configMap:
+  envType: "nonprod"
+  siteName: "ektvn"
+  tenantId: "224abdcd-1dc3-441b-a0fe-e90f70a53a1f"
+  karrosGateway: "athenagateway-p01-demo.usw1.karrostech.net"
+  keycloakDomain: "aaa-demo.usw2.karrostech.net"
+  dbHost: "athena-ektvn-rds.cr5mzwdlkiuv.us-east-2.rds.amazonaws.com"
+  dbName: "Athena"
+  kafkaBootstrapServers: "b-1.athenamsk.eg7z0i.c3.kafka.us-east-2.amazonaws.com:9092,b-2.athenamsk.eg7z0i.c3.kafka.us-east-2.amazonaws.com:9092"
+  nosHost: "10.11.5.15"
+  queueUser: "edulog"
+  queuePass: "edul0g"
+  dbUser: "edulog"
+  dbPass: "edul0g"
+  keycloakId: "athena"
+  keycloakBackendId: "athena-backend"
+  keycloadSecret: "4fc89ec7-3af8-4649-a014-529ef2975805"
+
+# secret:
+#   queueUser: "dXNlcgo="
+#   queuePass: "QjNhcG1pM2FjWQ=="
+#   dbUser: "ZWR1bG9nCg=="
+#   dbPass: "ZWR1bDBnCg=="
+#   keycloakId: "YXRoZW5hCg=="
+#   keycloakBackendId: "YXRoZW5hLWJhY2tlbmQK"
+#   keycloadSecret: "NGZjODllYzctM2FmOC00NjQ5LWEwMTQtNTI5ZWYyOTc1ODA1Cg=="
+
+gateway:
+  image:
+    tag: "e56829fdd2dce32a9616cb083471b04e8534ef7a"
+tnxhubservice:
+  image:
+    tag: "f4035225dfc322712cf3908522f317d30c8be0e8"
+routingservice:
+  image:
+    tag: "a302114c786379f776b038c3260c908d7699574d"
+    

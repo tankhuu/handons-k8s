@@ -1,0 +1,7 @@
+---
+aggregateservice:
+  image:
+    tag: "d3fad5fa3b51be2cc425b0868d949edc69e8125b"
+routingservice:
+  image:
+    tag: "f4035225dfc322712cf3908522f317d30c8be0e8"

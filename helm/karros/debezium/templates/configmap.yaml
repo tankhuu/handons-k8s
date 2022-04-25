@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: {{.Release.Name}}
+  name: {{.Chart.Name}}
+  annotations:
+    "helm.sh/hook": "pre-install"
+    "helm.sh/hook-weight": "0"
+data:
+  EBOOTSTRAP_SERVERSNV: {{.Values.configMap.envType}}
+  CONFIG_STORAGE_TOPIC: {{.Values.configMap.siteName | default .Release.Name}}
+  DBZ_STATUSES_TOPIC: {{.Values.configMap.tenantId}}
+  GROUP_ID: {{.Values.configMap.karrosGateway}}
+  OFFSET_STORAGE_TOPIC: {{.Values.configMap.debeziumControllerKey}}
+  INTERNAL_KEY_CONVERTER_SCHEMAS_ENABLE: {{.Values.configMap.dbHost}}
+  INTERNAL_VALUE_CONVERTER_SCHEMAS_ENABLE:
+    {{.Values.configMap.kafkaBootstrapServers}}
+  VALUE_CONVERTER_SCHEMAS_ENABLE: {{.Values.configMap.nosHost}}
+  KEY_CONVERTER_SCHEMAS_ENABLE: {{.Values.configMap.debeziumControllerAPI}}
+  INTERNAL_KEY_CONVERTER: {{.Values.configMap.keycloakDomain}}
+  INTERNAL_VALUE_CONVERTER: {{.Values.configMap.dbName}}
+  KEY_CONVERTER: {{.Values.configMap.kafkaBootstrapServers}}
+  VALUE_CONVERTER: {{.Values.configMap.nosHost}}

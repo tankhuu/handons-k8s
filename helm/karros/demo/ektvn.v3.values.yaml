@@ -1,0 +1,8 @@
+---
+overlayservice:
+  image:
+    tag: "1cc4d26003764a8e738130faf4feb250a572498d"
+tags:
+  # core: true
+  # rideRegistration: true
+  mapOverlay: true

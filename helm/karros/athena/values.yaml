@@ -1,0 +1,97 @@
+# Default values for athena.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+version: "1.0.0"
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+configMap:
+  envType: "nonprod"
+  tenantId: "abc"
+  karrosGateway: "athenagateway-p01-demo.usw1.karrostech.net"
+  keycloakDomain: "aaa-demo.usw2.karrostech.net"
+  dbHost: "dbHost"
+  dbName: "Athena"
+  kafkaBootstrapServers: "b-1.athenamsk.eg7z0i.c3.kafka.us-east-2.amazonaws.com:9092,b-2.athenamsk.eg7z0i.c3.kafka.us-east-2.amazonaws.com:9092"
+  debeziumControllerAPI: "httpps://zzciu1ond8.execute-api.us-east-2.amazonaws.com/default/debezium-controller"
+  debeziumControllerKey: "Y4BwX5q58bfcfeaig7iR6u1CBINwb6dA5gY7rc70"
+  nosHost: "10.11"
+  cacheHost: "mongodb"
+  queueHost: "rabbitmq"
+  queueUser: "edulog"
+  queuePass: "edul0g"
+  dbUser: "edulog"
+  dbPass: "edul0g"
+  keycloakId: "athena"
+  keycloakBackendId: "athena-backend"
+  keycloadSecret: "4fc89ec7-3af8-4649-a014-529ef2975805"
+
+secret:
+  queueUser: "ZWR1bG9nCg=="
+  queuePass: "OWFVT05wcnoybQo="
+  dbUser: "ZWR1bG9nCg=="
+  dbPass: "ZWR1bDBnCg=="
+  keycloakId: "YXRoZW5hCg=="
+  keycloakBackendId: "YXRoZW5hLWJhY2tlbmQK"
+  keycloadSecret: "NGZjODllYzctM2FmOC00NjQ5LWEwMTQtNTI5ZWYyOTc1ODA1Cg==" 
+
+# gateway:
+#   enabled: true
+#   image:
+#     tag: ""
+
+# tnxhubservice:
+#   enabled: true
+#   image:
+#     tag: ""
+
+# routingservice:
+#   enabled: true
+#   image:
+#     tag: ""
+
+# geocodeservice:
+#   enabled: true
+#   image:
+#     tag: ""
+
+# importingservice:
+#   enabled: true
+#   image:
+#     tag: ""
+
+# plannedrolloverservice:
+#   enabled: true
+#   image:
+#     tag: ""
+
+# reportservice:
+#   enabled: true
+#   image:
+#     tag: ""
+
+# Features on or off with Tags
+tags:
+  core: true
+  rideRegistration: false
+  mapOverlay: false
+  # telematics: false
