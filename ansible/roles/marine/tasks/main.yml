@@ -1,59 +1,64 @@
 ---
-# tasks file for pilot
+# tasks file for marine
 - name: create keypair
   amazon.aws.ec2_key:
-    name: '{{ ec2_keypair }}'
-    region: '{{ aws_region }}'
+    name: "{{ ec2_keypair }}"
+    region: "{{ aws_region }}"
     tags:
-      Name: '{{ ec2_keypair }}'
+      Name: "{{ ec2_keypair }}"
     force: false
-  register: pilot_keypair
+  register: marine_keypair
 - name: save keypair to local
-  copy: 
-    content: "{{ pilot_keypair.key.private_key }}"
+  copy:
+    content: "{{ marine_keypair.key.private_key }}"
     dest: "{{ key_path }}"
     mode: 0600
-  when: pilot_keypair.changed
-- name: create pilot security group
+  when: marine_keypair.changed
+- name: create marine security group
   amazon.aws.ec2_group:
-    name: pilot security group
-    description: Security Group for Pilot Instance
+    name: marine security group
+    description: Security Group for marine Instance
     region: "{{ aws_region }}"
-    rules: 
-    - proto: tcp
-      from_port: 22
-      to_port: 22
-      cidr_ip: 0.0.0.0/0
+    rules:
+      - proto: tcp
+        from_port: 22
+        to_port: 22
+        cidr_ip: 0.0.0.0/0
     rules_egress:
-    - proto: all
-      cidr_ip: 0.0.0.0/0
-  register: pilot_sg
-- name: launch pilot instance
+      - proto: all
+        cidr_ip: 0.0.0.0/0
+  register: marine_sg
+- name: launch marine instance
   amazon.aws.ec2_instance:
     instance_type: "{{ ec2_instance_type }}"
     image_id: "{{ ec2_image }}"
     wait: true
     region: "{{ aws_region }}"
     key_name: "{{ ec2_keypair }}"
-    security_group: "{{ pilot_sg.group_name }}"
+    security_group: "{{ marine_sg.group_name }}"
     volumes:
-    - device_name: /dev/sda1
-      ebs:
-        volume_size: 16
-        delete_on_termination: true
+      - device_name: /dev/sda1
+        ebs:
+          volume_size: 16
+          delete_on_termination: true
     count: 1
+    user_data: "{{ lookup('template', 'user_data.j2') }}"
     state: running
     tags:
-      Name: Pilot
-  register: pilot_instance
+      Name: marine
+  register: marine_instance
 # - name: Add instance to host group
 #   add_host:
 #     hostname: "{{ item.public_ip_address }}"
 #     groupname: launched
-#   loop: "{{ pilot_instance.instances }}"
+#   loop: "{{ marine_instance.instances }}"
 - name: wait for SSH to come up
   wait_for:
     host: "{{ item.public_ip_address }}"
     port: 22
     state: started
-  with_items: '{{ pilot_instance.instances }}'
+  with_items: "{{ marine_instance.instances }}"
+- name: copy zsh configuration file
+  copy:
+    src: zshrc # default pick from files folder of role
+    dest: /tmp/zshrc

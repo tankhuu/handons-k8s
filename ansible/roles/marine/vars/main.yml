@@ -1,7 +1,7 @@
 ---
-# vars file for pilot
-aws_region: 'ap-southeast-2'
-ec2_keypair: 'k8s'
-key_path: '/Users/tankhuu/.ssh/k8s.pem'
-ec2_instance_type: 't3.micro'
-ec2_image: 'ami-089e8a52c00cede0b' # Ubuntu Server 20.04 LTS (HVM), SSD Volume Type
+# vars file for marine
+aws_region: "ap-southeast-2"
+ec2_keypair: "marine"
+key_path: "/Users/tankhuu/.ssh/marine.pem"
+ec2_instance_type: "t3.micro"
+ec2_image: "ami-0d6fb2916ee0ab9fe" # Amazon Linux 2

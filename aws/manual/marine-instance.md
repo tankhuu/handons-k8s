@@ -1,4 +1,4 @@
-# Pilot instance to deploy k8s cluster
+# marine instance to deploy k8s cluster
 
 - OS: Ubuntu
 - Software:

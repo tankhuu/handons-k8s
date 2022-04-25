@@ -1,42 +1,31 @@
-Pilot Instance
+marine Instance
 =========
 
-Launch the pilot instance in AWS to create K8s Cluster.
+Launch the marine instance in AWS to create K8s Cluster.
 Install all necessary packages for using
 
 Requirements
 ------------
 
 Packages:
-- zsh (with power10k theme)
-- ansible > version 2.9
-- 
+- [zsh (with power10k theme)](https://dev.to/abdfnx/oh-my-zsh-powerlevel10k-cool-terminal-1no0)
+- [python3](https://www.python.org/downloads/)
+- [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html)
+  + `python3 -m pip install --user ansible`a
+- [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 
-Role Variables
---------------
-
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
-
-Dependencies
+Preparation
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+```
+# Config default profile for AWS
+aws configure
+```
 
-Example Playbook
-----------------
+Setup Marine
+------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+```
+cd ansible
+ansible-playbook deploy.yml
+```
