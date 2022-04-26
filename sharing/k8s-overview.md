@@ -29,8 +29,20 @@ export KOPS_STATE_STORE="s3://$BUCKET"
 kops create -f kops/clusters/basic/$NAME.yaml
 kops update cluster --name $NAME --yes --admin
 
+```
 
-# Demo Scenarios
+## Demo Scenarios
+
+```
+## Enable K8s Dashboard
+
+Follow guide on dashboard.md
+
+```
+
+## Cleanup cluster
+
+```
 
 # Cleanup 
 # kops delete cluster $NAME --yes
