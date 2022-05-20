@@ -1,6 +1,13 @@
 # List of useful commands in K8s
 
 ```
+gcloud container clusters create k1
+
+kubectl run nginx --image=nginx:1.15.7
+kubectl run nginx --image=nginx:latest
+kubectl expose deployments nginx --port=80 --type=LoadBalancer
+kubectl get pods -l "app=nginx" -o yaml
+
 kubectl api-resources | less
 
 kubectl get pods -n kube-system
