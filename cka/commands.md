@@ -60,4 +60,16 @@ kubectl get pods -l environment=production,tier=frontend
 kubectl get pods -l 'environment in (production),tier in (frontend)'
 kubectl get pods -l 'environment in (production, qa)'
 kubectl get pods -l 'environment,environment notin (frontend)'
+
+# Use the kubectl exec command to run an interactive shell inside the Monolith Pod. This can come in handy when you want to troubleshoot from within a container:
+
+`kubectl exec monolith --stdin --tty -c monolith -- /bin/sh`
+
+## For example, once you have a shell into the monolith container you can test external connectivity using the ping command:
+
+`ping -c 3 google.com`
+
+## Be sure to log out when you're done with this interactive shell.
+
+`exit`
 ```
