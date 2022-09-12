@@ -37,3 +37,8 @@ kubectl proxy
 # Access dashboard with token
 http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 ```
+
+kubectl create clusterrolebinding dashboard-admin --clusterrole=cluster-admin --serviceaccount=default;dashboard-admin
+
+
+curl -LO "https://dl.k8s.io/release/$(curl -LO "https://dl.k8s.io/release/v1.25.0/bin/darwin/amd64/kubectl")/bin/darwin/amd64/kubectl"
