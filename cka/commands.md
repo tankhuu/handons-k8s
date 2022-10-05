@@ -1,6 +1,9 @@
 # List of useful commands in K8s
 
 ```
+# Set default namespace for quick access
+kubectl config set-context --current --namespace=tooling
+
 gcloud container clusters create k1
 
 kubectl run nginx --image=nginx:1.15.7
